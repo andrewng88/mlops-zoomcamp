@@ -1,0 +1,15 @@
+artifact_uri: file:///workspaces/mlops-zoomcamp/02-experiment-tracking/mlruns/241436775883716626/71053dfe3fc543ee9e9013d6cf400792/artifacts
+end_time: 1716129389893
+entry_point_name: ''
+experiment_id: '241436775883716626'
+lifecycle_stage: active
+run_id: 71053dfe3fc543ee9e9013d6cf400792
+run_name: wistful-crow-422
+run_uuid: 71053dfe3fc543ee9e9013d6cf400792
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1716129384013
+status: 3
+tags: []
+user_id: codespace
