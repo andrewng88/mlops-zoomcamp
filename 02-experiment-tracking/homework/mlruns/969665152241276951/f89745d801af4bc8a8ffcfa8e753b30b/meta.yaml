@@ -1,0 +1,15 @@
+artifact_uri: file:///workspaces/mlops-zoomcamp/02-experiment-tracking/homework/mlruns/969665152241276951/f89745d801af4bc8a8ffcfa8e753b30b/artifacts
+end_time: 1716311482962
+entry_point_name: ''
+experiment_id: '969665152241276951'
+lifecycle_stage: active
+run_id: f89745d801af4bc8a8ffcfa8e753b30b
+run_name: My Custom Run Name
+run_uuid: f89745d801af4bc8a8ffcfa8e753b30b
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1716311462727
+status: 4
+tags: []
+user_id: codespace
