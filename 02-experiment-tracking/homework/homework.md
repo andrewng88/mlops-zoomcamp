@@ -13,7 +13,7 @@ For this we recommend creating a separate Python environment, for example, you c
 Once you installed the package, run the command `mlflow --version` and check the output.
 
 What's the version that you have?
-
+mlflow --version
 
 
 ## Q2. Download and preprocess the data
@@ -42,7 +42,7 @@ How many files were saved to `OUTPUT_FOLDER`?
 
 * 1
 * 3
-* 4
+* 4 <answer>
 * 7
 
 
@@ -66,7 +66,7 @@ Tip 2: don't modify the hyperparameters of the model to make sure that the train
 
 What is the value of the `min_samples_split` parameter:
 
-* 2
+* 2 <answer>
 * 4
 * 8
 * 10
