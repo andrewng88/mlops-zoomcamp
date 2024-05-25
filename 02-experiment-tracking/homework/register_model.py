@@ -12,7 +12,8 @@ HPO_EXPERIMENT_NAME = "random-forest-hyperopt"
 EXPERIMENT_NAME = "random-forest-best-models"
 RF_PARAMS = ['max_depth', 'n_estimators', 'min_samples_split', 'min_samples_leaf', 'random_state']
 
-mlflow.set_tracking_uri("http://127.0.0.1:5000")
+MLFLOW_TRACKING_URI = "sqlite:///mlruns.db"
+mlflow.set_tracking_uri(MLFLOW_TRACKING_URI)
 mlflow.set_experiment(EXPERIMENT_NAME)
 mlflow.sklearn.autolog()
 
@@ -72,8 +73,17 @@ def run_register_model(data_path: str, top_n: int):
     experiment = client.get_experiment_by_name(EXPERIMENT_NAME)
     # best_run = client.search_runs( ...  )[0]
 
+    best_run = client.search_runs(experiment_ids = 3,
+                                  run_view_type= mlflow.entities.ViewType.ACTIVE_ONLY,
+                                  max_results=1,
+                                  order_by=["metrics.test_rmse ASC"]
+                                 )[0]
+
+    best_run_id = best_run.info.run_id
+
     # Register the best model
-    # mlflow.register_model( ... )
+    mlflow.register_model(model_uri = f"runs:/{best_run_id}/model",
+                          name  = "Best_RandomForestRegressor_BasedOn_202103_testdata")
 
 
 if __name__ == '__main__':
