@@ -8,9 +8,10 @@ from hyperopt.pyll import scope
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import mean_squared_error
 
-mlflow.set_tracking_uri("http://127.0.0.1:5000")
+MLFLOW_TRACKING_URI = "sqlite:///mlruns.db"
+mlflow.set_tracking_uri(MLFLOW_TRACKING_URI)
 mlflow.set_experiment("random-forest-hyperopt")
-
+client = mlflow.MlflowClient(tracking_uri=MLFLOW_TRACKING_URI)
 
 def load_pickle(filename: str):
     with open(filename, "rb") as f_in:
@@ -34,11 +35,19 @@ def run_optimization(data_path: str, num_trials: int):
     X_val, y_val = load_pickle(os.path.join(data_path, "val.pkl"))
 
     def objective(params):
+        with mlflow.start_run():
+            mlflow.set_tag("model", "RF_regresspr")
+            mlflow.log_params(params)
+            #mlflow.log_param("max_depth", max_depth)
+            #mlflow.log_param("n_estimators", n_estimators)
+            #mlflow.log_param("min_samples_split", min_samples_split)
+            #mlflow.log_param("min_samples_leaf", min_samples_leaf)
 
-        rf = RandomForestRegressor(**params)
-        rf.fit(X_train, y_train)
-        y_pred = rf.predict(X_val)
-        rmse = mean_squared_error(y_val, y_pred, squared=False)
+            rf = RandomForestRegressor(**params)
+            rf.fit(X_train, y_train)
+            y_pred = rf.predict(X_val)
+            rmse = mean_squared_error(y_val, y_pred, squared=False)
+            mlflow.log_metric("rmse", rmse)
 
         return {'loss': rmse, 'status': STATUS_OK}
 

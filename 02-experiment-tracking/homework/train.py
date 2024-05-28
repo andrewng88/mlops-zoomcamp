@@ -8,8 +8,8 @@ from sklearn.metrics import mean_squared_error
 import mlflow
 
 mlflow.autolog()
-mlflow.set_tracking_uri("sqlite://///home/codespace/anaconda3/envs/exp-tracking/mlruns.db")
-mlflow.set_experiment("My Experiment Name")
+mlflow.set_tracking_uri("sqlite:///mlruns.db")
+mlflow.set_experiment("My Experiment")
 
 
 
