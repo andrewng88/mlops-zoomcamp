@@ -162,3 +162,4 @@ cython_debug/
 *.pk1
 *.bin
 *.parquet
+*.test
